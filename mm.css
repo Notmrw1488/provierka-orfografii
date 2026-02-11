@@ -1,0 +1,1163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Навигация */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4a6cf7;
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background: #f1f3ff;
+    color: #4a6cf7;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn:hover {
+    background: #e6e9ff;
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: #4a6cf7;
+    color: white;
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+}
+
+/* Основной контент */
+main {
+    padding: 30px 0;
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.page-header h1 i {
+    color: #4a6cf7;
+}
+
+.page-description {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 800px;
+}
+
+/* Страница проверки орфографии */
+.checker-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+    .checker-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.text-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.control-btn {
+    padding: 8px 16px;
+    background: #f1f3ff;
+    color: #4a6cf7;
+    border: 1px solid #d0d7ff;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.control-btn:hover {
+    background: #e6e9ff;
+}
+
+.text-input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#text-input {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+#text-input:focus {
+    outline: none;
+    border-color: #4a6cf7;
+}
+
+.char-counter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    color: #999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.check-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.check-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #4a6cf7, #6a82fb);
+    color: white;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(135deg, #3a5ce5, #5a72e9);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(74, 108, 247, 0.3);
+}
+
+.secondary-btn {
+    background: white;
+    color: #4a6cf7;
+    border: 2px solid #4a6cf7;
+}
+
+.secondary-btn:hover {
+    background: #f1f3ff;
+    transform: translateY(-3px);
+}
+
+/* Результаты проверки */
+.results-section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.results-header {
+    padding: 20px;
+    background: #f8f9ff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-header h3 {
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.error-icon {
+    color: #ff4757;
+}
+
+.success-icon {
+    color: #2ed573;
+}
+
+.results-content {
+    padding: 20px;
+}
+
+.checked-text {
+    min-height: 200px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    border: 1px solid #eee;
+}
+
+.checked-text .error {
+    background: #ffeaea;
+    color: #ff4757;
+    border-bottom: 2px solid #ff4757;
+    padding: 0 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+.checked-text .error:hover::after {
+    content: 'Нажмите для исправления';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.placeholder {
+    color: #999;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.suggestions-container h4 {
+    margin-bottom: 15px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.suggestions-list {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 6px;
+    border-left: 4px solid #4a6cf7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.suggestion-item:last-child {
+    margin-bottom: 0;
+}
+
+.suggestion-text {
+    flex: 1;
+}
+
+.suggestion-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.suggestion-btn {
+    padding: 5px 10px;
+    background: #f1f3ff;
+    color: #4a6cf7;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.suggestion-btn:hover {
+    background: #4a6cf7;
+    color: white;
+}
+
+.results-actions {
+    padding: 20px;
+    background: #f8f9ff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    background: white;
+    color: #4a6cf7;
+    border: 2px solid #4a6cf7;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn:hover {
+    background: #4a6cf7;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Страница тренировки */
+.training-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+    .training-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.training-selection h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.training-types {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.training-type-card {
+    padding: 20px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.training-type-card:hover {
+    border-color: #4a6cf7;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.training-type-card.active {
+    border-color: #4a6cf7;
+    background: #f8f9ff;
+}
+
+.training-type-card i {
+    font-size: 2rem;
+    color: #4a6cf7;
+    margin-bottom: 15px;
+}
+
+.training-type-card h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.training-type-card p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.training-exercise {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.exercise-header {
+    padding: 20px;
+    background: #f8f9ff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.exercise-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.exercise-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.progress-container {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4a6cf7, #6a82fb);
+    width: 10%;
+    transition: width 0.3s ease;
+}
+
+.exercise-content {
+    padding: 30px;
+}
+
+.exercise-question {
+    margin-bottom: 30px;
+}
+
+.exercise-question h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#question-text {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #333;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.exercise-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option-btn {
+    padding: 15px;
+    text-align: left;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    border-color: #4a6cf7;
+    background: #f8f9ff;
+    transform: translateY(-2px);
+}
+
+.option-btn.correct {
+    border-color: #2ed573;
+    background: #e9f9ef;
+}
+
+.option-btn.incorrect {
+    border-color: #ff4757;
+    background: #ffeaea;
+}
+
+.exercise-feedback {
+    display: none;
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.feedback-content {
+    text-align: center;
+}
+
+#feedback-text {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.next-btn {
+    padding: 12px 30px;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.next-btn:hover {
+    background: #3a5ce5;
+    transform: translateY(-2px);
+}
+
+.exercise-controls {
+    padding: 20px;
+    background: #f8f9ff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Страница диктанта */
+.dictation-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.dictation-controls {
+    padding: 30px;
+    background: #f8f9ff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.control-group h3 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.setting {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.setting label {
+    font-weight: 500;
+    color: #555;
+}
+
+.setting select {
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.setting select:focus {
+    outline: none;
+    border-color: #4a6cf7;
+}
+
+.playback-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.playback-btn {
+    padding: 12px 25px;
+    background: white;
+    color: #4a6cf7;
+    border: 2px solid #4a6cf7;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.playback-btn:hover {
+    background: #4a6cf7;
+    color: white;
+}
+
+.playback-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.dictation-content {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .dictation-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.current-sentence h3, .dictation-input h3 {
+    margin-bottom: 15px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sentence-text {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    min-height: 120px;
+    margin-bottom: 15px;
+}
+
+.sentence-counter {
+    text-align: center;
+    font-weight: 500;
+    color: #666;
+}
+
+.dictation-input textarea {
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.dictation-input textarea:focus {
+    outline: none;
+    border-color: #4a6cf7;
+}
+
+.dictation-input textarea:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.input-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dictation-results {
+    padding: 30px;
+    background: #f8f9ff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.check-dictation-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #4a6cf7, #6a82fb);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.check-dictation-btn:hover {
+    background: linear-gradient(135deg, #3a5ce5, #5a72e9);
+    transform: translateY(-2px);
+}
+
+.results-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.result-stat {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4a6cf7;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.detailed-results h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.detailed-result-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.detailed-result-item.correct {
+    border-left-color: #2ed573;
+    background: #f0f9f4;
+}
+
+.detailed-result-item.error {
+    border-left-color: #ff4757;
+    background: #fff0f0;
+}
+
+.result-sentence {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.result-correction {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Страница статистики */
+.statistics-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.stats-overview {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    background: #f8f9ff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    background: #f1f3ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon i {
+    font-size: 1.8rem;
+    color: #4a6cf7;
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.charts-section {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chart-container {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container h3 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+.recent-activity {
+    padding: 30px;
+}
+
+.recent-activity h3 {
+    margin-bottom: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+}
+
+.activity-icon {
+    font-size: 1.5rem;
+    color: #4a6cf7;
+    margin-top: 5px;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.activity-details {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+.activity-time {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* Футер */
+footer {
+    background: #333;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.footer-content {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.footer-info .logo {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    color: #bbb;
+    line-height: 1.6;
+}
+
+.footer-links h4 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #4a6cf7;
+}
+
+.footer-bottom {
+    padding: 20px 40px;
+    background: #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    color: #bbb;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    color: white;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #4a6cf7;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    border-radius: 10px;
+    overflow: hidden;
+    animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+    padding: 20px;
+    background: #f8f9ff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-modal {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Утилиты */
+.hidden {
+    display: none !important;
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка орфографии | Тренажёр грамотности</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="mm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-spell-check"></i>
+                    <span>Проверка орфографии</span>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn active" data-page="checker">
+                        <i class="fas fa-check-circle"></i> Проверка
+                    </button>
+                    <button class="nav-btn" data-page="training">
+                        <i class="fas fa-graduation-cap"></i> Тренировка
+                    </button>
+                    <button class="nav-btn" data-page="dictation">
+                        <i class="fas fa-pen"></i> Диктант
+                    </button>
+                    <button class="nav-btn" data-page="statistics">
+                        <i class="fas fa-chart-bar"></i> Статистика
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Страница проверки орфографии -->
+            <section id="checker" class="page active">
+                <div class="page-header">
+                    <h1><i class="fas fa-check-circle"></i> Проверка орфографии</h1>
+                    <p class="page-description">Введите текст для проверки орфографии. Система выделит ошибки и предложит правильные варианты.</p>
+                </div>
+                
+                <div class="checker-container">
+                    <div class="input-section">
+                        <div class="text-controls">
+                            <button class="control-btn" id="clear-text">
+                                <i class="fas fa-trash"></i> Очистить
+                            </button>
+                            <button class="control-btn" id="paste-text">
+                                <i class="fas fa-paste"></i> Вставить
+                            </button>
+                            <button class="control-btn" id="sample-text">
+                                <i class="fas fa-file-alt"></i> Пример текста
+                            </button>
+                        </div>
+                        
+                        <div class="text-input-container">
+                            <textarea id="text-input" placeholder="Введите или вставьте текст для проверки орфографии..."></textarea>
+                            <div class="char-counter">
+                                <span id="char-count">0</span> символов
+                            </div>
+                        </div>
+                        
+                        <div class="check-buttons">
+                            <button class="check-btn primary-btn" id="check-spelling">
+                                <i class="fas fa-search"></i> Проверить орфографию
+                            </button>
+                            <button class="check-btn secondary-btn" id="check-grammar">
+                                <i class="fas fa-language"></i> Проверить грамматику
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="results-section">
+                        <div class="results-header">
+                            <h3><i class="fas fa-list-check"></i> Результаты проверки</h3>
+                            <div class="stats">
+                                <span class="stat-item">
+                                    <i class="fas fa-times-circle error-icon"></i>
+                                    <span id="error-count">0</span> ошибок
+                                </span>
+                                <span class="stat-item">
+                                    <i class="fas fa-check-circle success-icon"></i>
+                                    <span id="correct-count">0</span> правильно
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="results-content">
+                            <div id="text-output" class="checked-text">
+                                <p class="placeholder">Здесь будет отображён проверенный текст с выделенными ошибками.</p>
+                            </div>
+                            
+                            <div class="suggestions-container">
+                                <h4><i class="fas fa-lightbulb"></i> Предлагаемые исправления:</h4>
+                                <div id="suggestions-list" class="suggestions-list">
+                                    <p class="placeholder">После проверки здесь появятся варианты исправления ошибок.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-actions">
+                            <button class="action-btn" id="apply-corrections">
+                                <i class="fas fa-check-double"></i> Применить все исправления
+                            </button>
+                            <button class="action-btn" id="copy-corrected">
+                                <i class="fas fa-copy"></i> Копировать исправленный текст
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Страница тренировки -->
+            <section id="training" class="page">
+                <div class="page-header">
+                    <h1><i class="fas fa-graduation-cap"></i> Тренировка орфографии</h1>
+                    <p class="page-description">Проверьте свои знания орфографии с помощью интерактивных упражнений.</p>
+                </div>
+                
+                <div class="training-container">
+                    <div class="training-selection">
+                        <h3>Выберите тип тренировки:</h3>
+                        <div class="training-types">
+                            <div class="training-type-card active" data-type="choose-word">
+                                <i class="fas fa-check-square"></i>
+                                <h4>Выбери правильный вариант</h4>
+                                <p>Выберите правильное написание слова из нескольких вариантов</p>
+                            </div>
+                            <div class="training-type-card" data-type="fill-gap">
+                                <i class="fas fa-edit"></i>
+                                <h4>Вставь пропущенную букву</h4>
+                                <p>Вставьте пропущенную букву в слове</p>
+                            </div>
+                            <div class="training-type-card" data-type="find-error">
+                                <i class="fas fa-search"></i>
+                                <h4>Найди ошибку</h4>
+                                <p>Найдите ошибку в предложении</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="training-exercise">
+                        <div class="exercise-header">
+                            <div class="exercise-stats">
+                                <span class="exercise-stat">
+                                    <i class="fas fa-question-circle"></i>
+                                    Вопрос: <span id="question-number">1</span>/10
+                                </span>
+                                <span class="exercise-stat">
+                                    <i class="fas fa-star"></i>
+                                    Счёт: <span id="score">0</span>
+                                </span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="progress-bar"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-content">
+                            <div id="exercise-question" class="exercise-question">
+                                <h3>Выберите правильный вариант написания слова:</h3>
+                                <p id="question-text">Кар...ван, кар...ван, кар...ван</p>
+                            </div>
+                            
+                            <div id="exercise-options" class="exercise-options">
+                                <!-- Варианты ответов будут добавляться динамически -->
+                            </div>
+                            
+                            <div class="exercise-feedback" id="exercise-feedback">
+                                <div class="feedback-content">
+                                    <p id="feedback-text"></p>
+                                    <button class="next-btn" id="next-question">Следующий вопрос <i class="fas fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-controls">
+                            <button class="control-btn" id="start-training">
+                                <i class="fas fa-play"></i> Начать тренировку
+                            </button>
+                            <button class="control-btn" id="restart-training">
+                                <i class="fas fa-redo"></i> Начать заново
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Страница диктанта -->
+            <section id="dictation" class="page">
+                <div class="page-header">
+                    <h1><i class="fas fa-pen"></i> Диктант</h1>
+                    <p class="page-description">Напишите диктант под диктовку и проверьте свою грамотность.</p>
+                </div>
+                
+                <div class="dictation-container">
+                    <div class="dictation-controls">
+                        <div class="control-group">
+                            <h3><i class="fas fa-sliders-h"></i> Настройки диктанта</h3>
+                            <div class="settings">
+                                <div class="setting">
+                                    <label for="difficulty">Сложность:</label>
+                                    <select id="difficulty">
+                                        <option value="easy">Лёгкий</option>
+                                        <option value="medium" selected>Средний</option>
+                                        <option value="hard">Сложный</option>
+                                    </select>
+                                </div>
+                                <div class="setting">
+                                    <label for="speed">Скорость диктовки:</label>
+                                    <select id="speed">
+                                        <option value="slow">Медленно</option>
+                                        <option value="normal" selected>Нормально</option>
+                                        <option value="fast">Быстро</option>
+                                    </select>
+                                </div>
+                                <div class="setting">
+                                    <label for="dictation-length">Длина диктанта:</label>
+                                    <select id="dictation-length">
+                                        <option value="short">Короткий (3-5 предложений)</option>
+                                        <option value="medium" selected>Средний (5-8 предложений)</option>
+                                        <option value="long">Длинный (8-12 предложений)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="playback-controls">
+                            <button class="playback-btn" id="start-dictation">
+                                <i class="fas fa-play"></i> Начать диктант
+                            </button>
+                            <button class="playback-btn" id="pause-dictation" disabled>
+                                <i class="fas fa-pause"></i> Пауза
+                            </button>
+                            <button class="playback-btn" id="repeat-sentence">
+                                <i class="fas fa-redo"></i> Повторить предложение
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="dictation-content">
+                        <div class="current-sentence">
+                            <h3><i class="fas fa-volume-up"></i> Текущее предложение:</h3>
+                            <div id="current-sentence-text" class="sentence-text">
+                                Нажмите "Начать диктант" чтобы начать
+                            </div>
+                            <div class="sentence-counter">
+                                Предложение <span id="sentence-number">0</span> из <span id="total-sentences">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="dictation-input">
+                            <h3><i class="fas fa-keyboard"></i> Ваш текст:</h3>
+                            <textarea id="dictation-text" placeholder="Пишите здесь то, что слышите..." disabled></textarea>
+                            <div class="input-info">
+                                <span id="dictation-char-count">0</span> символов
+                                <span class="timer">
+                                    <i class="fas fa-clock"></i>
+                                    <span id="dictation-timer">00:00</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dictation-results">
+                        <button class="check-dictation-btn" id="check-dictation" disabled>
+                            <i class="fas fa-check-double"></i> Проверить диктант
+                        </button>
+                        
+                        <div id="dictation-results" class="results-content" style="display: none;">
+                            <h3><i class="fas fa-chart-pie"></i> Результаты диктанта</h3>
+                            <div class="results-stats">
+                                <div class="result-stat">
+                                    <div class="stat-value" id="dictation-score">0</div>
+                                    <div class="stat-label">Баллов</div>
+                                </div>
+                                <div class="result-stat">
+                                    <div class="stat-value" id="dictation-errors">0</div>
+                                    <div class="stat-label">Ошибок</div>
+                                </div>
+                                <div class="result-stat">
+                                    <div class="stat-value" id="dictation-accuracy">0%</div>
+                                    <div class="stat-label">Точность</div>
+                                </div>
+                            </div>
+                            
+                            <div class="detailed-results">
+                                <h4>Подробные результаты:</h4>
+                                <div id="detailed-results-list">
+                                    <!-- Детальные результаты будут добавляться динамически -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Страница статистики -->
+            <section id="statistics" class="page">
+                <div class="page-header">
+                    <h1><i class="fas fa-chart-bar"></i> Статистика</h1>
+                    <p class="page-description">Просматривайте вашу статистику и прогресс в улучшении орфографии.</p>
+                </div>
+                
+                <div class="statistics-container">
+                    <div class="stats-overview">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="total-checks">0</div>
+                                <div class="stat-label">Проверок текста</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="total-exercises">0</div>
+                                <div class="stat-label">Выполнено упражнений</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="accuracy-rate">0%</div>
+                                <div class="stat-label">Средняя точность</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="total-score">0</div>
+                                <div class="stat-label">Всего очков</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="charts-section">
+                        <div class="chart-container">
+                            <h3><i class="fas fa-chart-bar"></i> Ошибки по категориям</h3>
+                            <canvas id="errors-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3><i class="fas fa-chart-line"></i> Прогресс за неделю</h3>
+                            <canvas id="progress-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3><i class="fas fa-history"></i> Недавняя активность</h3>
+                        <div id="activity-list" class="activity-list">
+                            <div class="activity-item">
+                                <i class="fas fa-check-circle activity-icon"></i>
+                                <div class="activity-content">
+                                    <div class="activity-title">Проверка текста</div>
+                                    <div class="activity-details">Найдено 3 ошибки в тексте из 256 символов</div>
+                                    <div class="activity-time">Сегодня, 14:30</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-graduation-cap activity-icon"></i>
+                                <div class="activity-content">
+                                    <div class="activity-title">Тренировка: Выбери правильный вариант</div>
+                                    <div class="activity-details">Результат: 8/10 правильных ответов</div>
+                                    <div class="activity-time">Вчера, 18:45</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <i class="fas fa-pen activity-icon"></i>
+                                <div class="activity-content">
+                                    <div class="activity-title">Диктант "Средней сложности"</div>
+                                    <div class="activity-details">Результат: 92% точности, 2 ошибки</div>
+                                    <div class="activity-time">2 дня назад, 10:15</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">
+                        <i class="fas fa-spell-check"></i>
+                        <span>Проверка орфографии</span>
+                    </div>
+                    <p class="footer-description">
+                        Тренажёр для улучшения грамотности и проверки орфографии. 
+                        Развивайте свои навыки письма с помощью интерактивных упражнений.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Разделы</h4>
+                    <ul>
+                        <li><a href="#" data-page="checker">Проверка орфографии</a></li>
+                        <li><a href="#" data-page="training">Тренировка</a></li>
+                        <li><a href="#" data-page="dictation">Диктант</a></li>
+                        <li><a href="#" data-page="statistics">Статистика</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Полезные ресурсы</h4>
+                    <ul>
+                        <li><a href="#">Правила орфографии</a></li>
+                        <li><a href="#">Словарь трудных слов</a></li>
+                        <li><a href="#">Типичные ошибки</a></li>
+                        <li><a href="#">Советы по грамотности</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Тренажёр проверки орфографии. Все права защищены.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Модальное окно с правилами -->
+    <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Правила орфографии</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="rules-content">
+                    <!-- Содержимое правил будет загружено динамически -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
